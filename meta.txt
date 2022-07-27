@@ -1,0 +1,7 @@
+users:
+  - name: roman
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCkZiF2s6ZLO+0WhO0i9Mx8Agt7XPLkLX3zW9FgNUckZM67gcdtFZ8+N28wopZyFNMT32F2+WW/fkxfx3bIwZXZa3NZZNIggh0BXsOyVWBPCRcREUfN8EOyZ1CX0DBtl2GjqvVchUIo79N46WdLRX3GC6UFrSmYX8WhKzkhRuzpgiMYSurcuSS1IoOC8baphSAAqAXAheOMkvU74ejFtYDy35/Z2qWAH4k+cS7IgYq+0Rpv4DcctyKEBfSP/QzrRRCPsQXslkVnXIwyh+qz9JEfhJxeYTDbGdkSjsSvcAQ7oiH9yzDcUydG5p4Nak9QtOCWd5wsYHXj6SU3i7YY4CnYAXWtixXlaPt0sKPTlgFdR9gbhcA1zbI67e3vj5E1E1f/PDpu9QaAjV33dCo5bKG/Wyz6xprdBbONC3pAtwpDtCuFvBf457nQJ+8slkvmlpSCRTJCmQ7nkly4XSKWcLp0r9k0rJ8+OvPUqA8WlhyHhzZu7idJpG5KgcuFl5bCewc= roman@localhost
