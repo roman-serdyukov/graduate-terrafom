@@ -1,13 +1,13 @@
-resource "yandex_compute_instance" "gitlab" {
-  name        = "gitlab"
+resource "yandex_compute_instance" "db1" {
+  name        = "db1"
   zone        = "ru-central1-b"
-  description = "VM for gitlab repository"
-  hostname    = "gitlab.reserdukov.ru"
+  description = "VM for db repository"
+  hostname    = "db1.reserdukov.ru"
   allow_stopping_for_update = true
   
   resources {
     cores  = 4
-    memory = 8
+    memory = 4
   }
 
   boot_disk {
@@ -18,8 +18,8 @@ resource "yandex_compute_instance" "gitlab" {
   }
 
   network_interface {
-    subnet_id       = "${yandex_vpc_subnet.gitlab-subnet-b.id}"
-    ip_address      = "192.168.6.3"
+    subnet_id       = "${yandex_vpc_subnet.db-subnet-b.id}"
+    ip_address      = "192.168.31.3"
     }
 
   metadata = {
@@ -27,16 +27,16 @@ resource "yandex_compute_instance" "gitlab" {
     }
 }
 
-resource "yandex_compute_instance" "runner" {
-  name        = "runner"
+resource "yandex_compute_instance" "db2" {
+  name        = "db2"
   zone        = "ru-central1-b"
-  description = "VM for gitlab repository"
-  hostname    = "runner.reserdukov.ru"
+  description = "VM for db repository"
+  hostname    = "db2.reserdukov.ru"
   allow_stopping_for_update = true
   
   resources {
     cores  = 4
-    memory = 8
+    memory = 4
   }
 
   boot_disk {
@@ -47,8 +47,8 @@ resource "yandex_compute_instance" "runner" {
   }
 
   network_interface {
-    subnet_id   = "${yandex_vpc_subnet.gitlab-subnet-b.id}"
-    ip_address  = "192.168.6.4"
+    subnet_id   = "${yandex_vpc_subnet.db-subnet-b.id}"
+    ip_address  = "192.168.31.4"
   }
 
   metadata = {

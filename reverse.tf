@@ -12,7 +12,7 @@ resource "yandex_compute_instance" "reverse" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd81hgrcv6lsnkremf32"
+      image_id = "fd82fnsvr0bgt1fid7cl" # ubuntu 18.04 nat instance
       size = "20"
     }
   }
@@ -25,7 +25,6 @@ resource "yandex_compute_instance" "reverse" {
   }
 
   metadata = {
-#    user-data = "${file("./meta.txt")}"
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.reserdukov@gmail.com.pub")}"
     }
 }
