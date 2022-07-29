@@ -18,7 +18,7 @@ resource "yandex_compute_instance" "www" {
   }
 
   network_interface {
-    subnet_id       = "${yandex_vpc_subnet.webapps-subnet-b.id}"
+    subnet_id       = "${yandex_vpc_subnet.apps-subnet-b.id}"
     ip_address      = "192.168.5.3"
     }
 

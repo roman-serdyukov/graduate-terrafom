@@ -9,8 +9,8 @@ resource "yandex_vpc_subnet" "all-subnet-a" {
     network_id     = "${yandex_vpc_network.devops-net.id}"
 }
 
-resource "yandex_vpc_subnet" "webapps-subnet-b" {
-    name           = "webapps-subnet-b"
+resource "yandex_vpc_subnet" "apps-subnet-b" {
+    name           = "apps-subnet-b"
     v4_cidr_blocks = ["192.168.5.0/28"]
     zone           = "ru-central1-b"
     network_id     = "${yandex_vpc_network.devops-net.id}"
