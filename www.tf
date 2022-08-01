@@ -1,6 +1,22 @@
+locals {
+  vpc_ip_address_www = {
+    stage = "192.168.99.4"
+    prod  = "192.168.5.3"
+  }
+  vpc_subnet_id_www = {
+    satge = "${yandex_vpc_subnet.all-subnet-a.id}"
+    prod  = "${yandex_vpc_subnet.apps-subnet-b.id}"
+  }
+  instance_zone_www = {
+    stage =  "ru-central1-a"
+    prod  =  "ru-central1-b"
+  }
+}
+
 resource "yandex_compute_instance" "www" {
   name        = "www"
-  zone        = "ru-central1-b"
+  zone        = local.instance_zone_www[terraform.workspace]
+#  zone        = "ru-central1-b"
   description = "VM for gitlab repository"
   hostname    = "www.reserdukov.ru"
   allow_stopping_for_update = true
@@ -18,10 +34,12 @@ resource "yandex_compute_instance" "www" {
   }
 
   network_interface {
-    subnet_id       = "${yandex_vpc_subnet.apps-subnet-b.id}"
-    ip_address      = "192.168.5.3"
+#    subnet_id       = "${yandex_vpc_subnet.apps-subnet-b.id}"
+#    ip_address      = "192.168.5.3"
+    subnet_id       = local.vpc_subnet_id_www[terraform.workspace]
+    ip_address      = local.vpc_ip_address_www[terraform.workspace]
     }
-
+    
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.reserdukov@gmail.com.pub")}"
     }
