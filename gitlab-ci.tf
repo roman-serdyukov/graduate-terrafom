@@ -23,7 +23,6 @@ locals {
 
 resource "yandex_compute_instance" "gitlab" {
   name        = "gitlab"
-#  zone        = "ru-central1-b"
   zone        = local.instance_zone_gitlab[terraform.workspace]
   description = "VM for gitlab repository"
   hostname    = "gitlab.reserdukov.ru"
@@ -42,21 +41,18 @@ resource "yandex_compute_instance" "gitlab" {
   }
 
   network_interface {
-  #  subnet_id       = "${yandex_vpc_subnet.gitlab-subnet-b.id}"
-  #  ip_address      = "192.168.6.3"
     subnet_id       = local.vpc_subnet_id_gitlab[terraform.workspace]
     ip_address      = local.vpc_ip_address_gitlab[terraform.workspace]
     }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.reserdukov@gmail.com.pub")}"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
     }
 }
 
 resource "yandex_compute_instance" "runner" {
   name        = "runner"
   zone        = local.instance_zone_gitlab[terraform.workspace]
-#  zone        = "ru-central1-b"
   description = "VM for gitlab repository"
   hostname    = "runner.reserdukov.ru"
   allow_stopping_for_update = true
@@ -74,13 +70,11 @@ resource "yandex_compute_instance" "runner" {
   }
 
   network_interface {
-#    subnet_id   = "${yandex_vpc_subnet.gitlab-subnet-b.id}"
-#    ip_address  = "192.168.6.4"
     subnet_id       = local.vpc_subnet_id_runner[terraform.workspace]
     ip_address      = local.vpc_ip_address_runner[terraform.workspace]
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.reserdukov@gmail.com.pub")}"
+    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
     }
 }
