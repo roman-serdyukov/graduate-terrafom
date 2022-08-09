@@ -7,6 +7,7 @@ resource "yandex_vpc_subnet" "all-subnet-a" {
     v4_cidr_blocks = ["192.168.99.0/24"]
     zone           = "ru-central1-a"
     network_id     = "${yandex_vpc_network.devops-net.id}"
+    route_table_id = "${yandex_vpc_route_table.inet-route-stage.id}"
 }
 
 resource "yandex_vpc_subnet" "apps-subnet-b" {
@@ -54,5 +55,15 @@ resource "yandex_vpc_route_table" "inet-route" {
     static_route {
         destination_prefix = "0.0.0.0/0"
         next_hop_address   = "192.168.100.3"
+  }
+}
+
+resource "yandex_vpc_route_table" "inet-route-stage" {
+    name        = "inet-stage"
+    network_id  = "${yandex_vpc_network.devops-net.id}"
+
+    static_route {
+        destination_prefix = "0.0.0.0/0"
+        next_hop_address   = "192.168.99.254"
   }
 }

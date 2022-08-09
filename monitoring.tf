@@ -4,7 +4,7 @@ locals {
     prod  = "192.168.8.3"
   }
   vpc_subnet_id_monitoring = {
-    satge = "${yandex_vpc_subnet.all-subnet-a.id}"
+    stage = "${yandex_vpc_subnet.all-subnet-a.id}"
     prod  = "${yandex_vpc_subnet.monitoring-subnet-b.id}"
   }
   instance_zone_monitoring = {

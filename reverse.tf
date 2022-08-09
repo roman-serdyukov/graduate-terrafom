@@ -4,7 +4,7 @@ locals {
     prod  = "192.168.100.3"
   }
   vpc_subnet_id_reverse = {
-    satge = "${yandex_vpc_subnet.all-subnet-a.id}"
+    stage = "${yandex_vpc_subnet.all-subnet-a.id}"
     prod  = "${yandex_vpc_subnet.reverse-subnet-b.id}"
   }
   instance_zone_reverse = {

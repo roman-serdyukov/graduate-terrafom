@@ -4,7 +4,7 @@ locals {
     prod  = "192.168.6.3"
   }
   vpc_subnet_id_gitlab = {
-    satge = "${yandex_vpc_subnet.all-subnet-a.id}"
+    stage = "${yandex_vpc_subnet.all-subnet-a.id}"
     prod  = "${yandex_vpc_subnet.gitlab-subnet-b.id}"
   }
   vpc_ip_address_runner = {
@@ -12,7 +12,7 @@ locals {
     prod  = "192.168.6.4"
   }
   vpc_subnet_id_runner = {
-    satge = "${yandex_vpc_subnet.all-subnet-a.id}"
+    stage = "${yandex_vpc_subnet.all-subnet-a.id}"
     prod  = "${yandex_vpc_subnet.gitlab-subnet-b.id}"
   }
   instance_zone_gitlab = {

@@ -4,7 +4,7 @@ locals {
     prod  = "192.168.31.3"
   }
   vpc_subnet_id_db1 = {
-    satge = "${yandex_vpc_subnet.all-subnet-a.id}"
+    stage = "${yandex_vpc_subnet.all-subnet-a.id}"
     prod  = "${yandex_vpc_subnet.db-subnet-b.id}"
   }
   vpc_ip_address_db2 = {
@@ -12,7 +12,7 @@ locals {
     prod  = "192.168.31.4"
   }
   vpc_subnet_id_db2 = {
-    satge = "${yandex_vpc_subnet.all-subnet-a.id}"
+    stage = "${yandex_vpc_subnet.all-subnet-a.id}"
     prod  = "${yandex_vpc_subnet.db-subnet-b.id}"
   }
   instance_zone_mysql = {
