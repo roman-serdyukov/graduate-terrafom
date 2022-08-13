@@ -40,6 +40,14 @@ resource "yandex_compute_instance" "reverse" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
+#    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
+    ssh-keys = "ubuntu:${file("./id_rsa.netology.pub")}"
+#    ssh-keys = "ubuntu:$sshkey"
     }
+/*
+  provisioner "local-exec" {
+    command    = "echo $sshkey >>/home/ubuntu/.ssh/authorized_keys"
+    on_failure = continue
+  }
+  */
 }

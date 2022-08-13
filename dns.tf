@@ -8,7 +8,31 @@ resource "yandex_dns_zone" "reserdukov" {
 
   zone             = "reserdukov.ru."
   public           = false
-  private_networks = [yandex_vpc_network.devops-net.id]
+  private_networks = [yandex_vpc_network.webapps.id]
+}
+
+resource "yandex_dns_recordset" "alertmanager" {
+  zone_id = yandex_dns_zone.reserdukov.id
+  name    = "alertmanager.reserdukov.ru."
+  type    = "CNAME"
+  ttl     = 200
+  data    = ["monitoring"]
+}
+
+resource "yandex_dns_recordset" "prometheus" {
+  zone_id = yandex_dns_zone.reserdukov.id
+  name    = "prometheus.reserdukov.ru."
+  type    = "CNAME"
+  ttl     = 200
+  data    = ["monitoring"]
+}
+
+resource "yandex_dns_recordset" "grafana" {
+  zone_id = yandex_dns_zone.reserdukov.id
+  name    = "grafana.reserdukov.ru."
+  type    = "CNAME"
+  ttl     = 200
+  data    = ["monitoring"]
 }
 /*
 resource "yandex_dns_recordset" "www" {

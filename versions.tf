@@ -5,18 +5,27 @@ terraform {
     }
   }
   required_version = ">= 0.13"
-}
 
-/*
+#  backend "s3" {
+#    endpoint   = "storage.yandexcloud.net"
+#    bucket     = "webapp"
+#    region     = "ru-central1"
+#    key        = "terraform-state/netology.tfstate"
+
+#    skip_region_validation      = true
+#    skip_credentials_validation = true
+#  }
+
+
 cloud {
-    organization = "example_corp"
+    organization = "roman-serdyukov"
     hostname = "app.terraform.io" # Optional; defaults to app.terraform.io
 
     workspaces {
       tags = ["prod"]
     }
   }
-*/
+}
 
 provider "yandex" {
   cloud_id                 = "b1gs4sjqbi3m84ii35ou"

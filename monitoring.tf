@@ -38,6 +38,6 @@ resource "yandex_compute_instance" "monitoring" {
     }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
-    }
+        ssh-keys = "ubuntu:${file("./id_rsa.netology.pub")}"
+   }
 }

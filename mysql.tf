@@ -46,7 +46,7 @@ resource "yandex_compute_instance" "db1" {
     }
   
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
+        ssh-keys = "ubuntu:${file("./id_rsa.netology.pub")}"
     }
 }
 
@@ -75,6 +75,6 @@ resource "yandex_compute_instance" "db2" {
     }
   
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
+        ssh-keys = "ubuntu:${file("./id_rsa.netology.pub")}"
     }
 }
