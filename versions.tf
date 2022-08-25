@@ -6,17 +6,6 @@ terraform {
   }
   required_version = ">= 0.13"
 
-#  backend "s3" {
-#    endpoint   = "storage.yandexcloud.net"
-#    bucket     = "webapp"
-#    region     = "ru-central1"
-#    key        = "terraform-state/netology.tfstate"
-
-#    skip_region_validation      = true
-#    skip_credentials_validation = true
-#  }
-
-
 cloud {
     organization = "roman-serdyukov"
     hostname = "app.terraform.io" # Optional; defaults to app.terraform.io

@@ -11,6 +11,10 @@ locals {
     stage =  "ru-central1-a"
     prod  =  "ru-central1-b"
   }
+  external_ip = {
+    stage = var.static
+    prod  = var.static
+  }
 }
 
 resource "yandex_compute_instance" "reverse" {
@@ -35,19 +39,12 @@ resource "yandex_compute_instance" "reverse" {
   network_interface {
     subnet_id       = local.vpc_subnet_id_reverse[terraform.workspace]
     ip_address      = local.vpc_ip_address_reverse[terraform.workspace]
-    nat_ip_address = "51.250.111.49"
-    nat            = true
+    nat_ip_address  = local.external_ip[terraform.workspace]
+    nat             = true
   }
 
   metadata = {
-#    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.netology.pub")}"
-    ssh-keys = "ubuntu:${file("./id_rsa.netology.pub")}"
-#    ssh-keys = "ubuntu:$sshkey"
+#    ssh-keys = "ubuntu:${file(var.sshkey)}"
+    ssh-keys = var.sshkey
     }
-/*
-  provisioner "local-exec" {
-    command    = "echo $sshkey >>/home/ubuntu/.ssh/authorized_keys"
-    on_failure = continue
-  }
-  */
 }
