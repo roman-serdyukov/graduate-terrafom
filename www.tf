@@ -7,17 +7,18 @@ locals {
     stage = "${yandex_vpc_subnet.all-subnet-a.id}"
     prod  = "${yandex_vpc_subnet.apps-subnet-b.id}"
   }
+  
   instance_zone_www = {
-    stage =  "ru-central1-a"
-    prod  =  "ru-central1-b"
+    stage =  var.stage-zone
+    prod  =  var.prod-zone
   }
 }
 
 resource "yandex_compute_instance" "www" {
-  name        = "www"
-  zone        = local.instance_zone_www[terraform.workspace]
-  description = "VM for gitlab repository"
-  hostname    = "www.reserdukov.ru"
+  name                      = "www"
+  zone                      = local.instance_zone_www[terraform.workspace]
+  description               = "VM for gitlab repository"
+  hostname                  = "www.reserdukov.ru"
   allow_stopping_for_update = true
   
   resources {
@@ -28,13 +29,13 @@ resource "yandex_compute_instance" "www" {
   boot_disk {
     initialize_params {
       image_id = "fd81hgrcv6lsnkremf32"
-      size = "30"
+      size     = "30"
     }
   }
 
   network_interface {
-    subnet_id       = local.vpc_subnet_id_www[terraform.workspace]
-    ip_address      = local.vpc_ip_address_www[terraform.workspace]
+    subnet_id   = local.vpc_subnet_id_www[terraform.workspace]
+    ip_address  = local.vpc_ip_address_www[terraform.workspace]
     }
     
   metadata = {

@@ -8,7 +8,7 @@ terraform {
 
 cloud {
     organization = "roman-serdyukov"
-    hostname = "app.terraform.io" # Optional; defaults to app.terraform.io
+    hostname     = "app.terraform.io" # Optional; defaults to app.terraform.io
 
     workspaces {
       tags = ["prod"]
@@ -16,8 +16,15 @@ cloud {
   }
 }
 
+locals {
+  instance_zone_versions = {
+  stage =  var.stage-zone
+  prod  =  var.prod-zone
+  }
+}
+
 provider "yandex" {
-  cloud_id                 = "b1gs4sjqbi3m84ii35ou"
-  folder_id                = "b1gu1oe1m0qlnkj61u6a"
-  zone                     = "ru-central1-a"
+  cloud_id  = "b1gs4sjqbi3m84ii35ou"
+  folder_id = "b1gu1oe1m0qlnkj61u6a"
+  zone      = local.instance_zone_versions[terraform.workspace]
 }

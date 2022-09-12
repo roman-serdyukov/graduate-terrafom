@@ -43,7 +43,7 @@ ubuntu:ssh-rsa YouRPublicKeY+BLablABla\+=BLablABla\+=BLablABla\+= youremail@exam
 - В терминале, перед запуском terraform apply, добавить TF_TOKEN_app_terraform_io (token для Terraform cloud) в переменные среды окружения.
 
 ## Переменные
-В файле vars.tf указаны значения следующтх переменных:
+В файле vars.tf указаны значения следующих переменных:
 - static
 Статический ip адрес. По умолчанию настроено на добавление данной переменной в Terraform cloud. Можно задать значение в этом блоке, например:
 ```

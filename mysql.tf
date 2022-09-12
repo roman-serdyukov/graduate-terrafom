@@ -16,16 +16,16 @@ locals {
     prod  = "${yandex_vpc_subnet.db-subnet-b.id}"
   }
   instance_zone_mysql = {
-    stage =  "ru-central1-a"
-    prod  =  "ru-central1-b"
+    stage =  var.stage-zone
+    prod  =  var.prod-zone
   }
 }
 
 resource "yandex_compute_instance" "db1" {
-  name        = "db1"
-  zone        = local.instance_zone_mysql[terraform.workspace]
-  description = "VM for db repository"
-  hostname    = "db1.reserdukov.ru"
+  name                      = "db1"
+  zone                      = local.instance_zone_mysql[terraform.workspace]
+  description               = "VM for db repository"
+  hostname                  = "db1.reserdukov.ru"
   allow_stopping_for_update = true
   
   resources {
@@ -41,8 +41,8 @@ resource "yandex_compute_instance" "db1" {
   }
 
   network_interface {
-    subnet_id       = local.vpc_subnet_id_db1[terraform.workspace]
-    ip_address      = local.vpc_ip_address_db1[terraform.workspace]
+    subnet_id   = local.vpc_subnet_id_db1[terraform.workspace]
+    ip_address  = local.vpc_ip_address_db1[terraform.workspace]
     }
   
   metadata = {
@@ -52,10 +52,10 @@ resource "yandex_compute_instance" "db1" {
 }
 
 resource "yandex_compute_instance" "db2" {
-  name        = "db2"
-  zone        = local.instance_zone_mysql[terraform.workspace]
-  description = "VM for db repository"
-  hostname    = "db2.reserdukov.ru"
+  name                      = "db2"
+  zone                      = local.instance_zone_mysql[terraform.workspace]
+  description               = "VM for db repository"
+  hostname                  = "db2.reserdukov.ru"
   allow_stopping_for_update = true
   
   resources {
@@ -66,13 +66,13 @@ resource "yandex_compute_instance" "db2" {
   boot_disk {
     initialize_params {
       image_id = "fd81hgrcv6lsnkremf32"
-      size = "30"
+      size     = "30"
     }
   }
 
   network_interface {
-    subnet_id       = local.vpc_subnet_id_db2[terraform.workspace]
-    ip_address      = local.vpc_ip_address_db2[terraform.workspace]
+    subnet_id   = local.vpc_subnet_id_db2[terraform.workspace]
+    ip_address  = local.vpc_ip_address_db2[terraform.workspace]
     }
   
   metadata = {

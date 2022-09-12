@@ -16,16 +16,16 @@ locals {
     prod  = "${yandex_vpc_subnet.gitlab-subnet-b.id}"
   }
   instance_zone_gitlab = {
-    stage =  "ru-central1-a"
-    prod  =  "ru-central1-b"
+    stage =  var.stage-zone
+    prod  =  var.prod-zone
   }
 }
 
 resource "yandex_compute_instance" "gitlab" {
-  name        = "gitlab"
-  zone        = local.instance_zone_gitlab[terraform.workspace]
-  description = "VM for gitlab repository"
-  hostname    = "gitlab.reserdukov.ru"
+  name                      = "gitlab"
+  zone                      = local.instance_zone_gitlab[terraform.workspace]
+  description               = "VM for gitlab repository"
+  hostname                  = "gitlab.reserdukov.ru"
   allow_stopping_for_update = true
   
   resources {
@@ -36,13 +36,13 @@ resource "yandex_compute_instance" "gitlab" {
   boot_disk {
     initialize_params {
       image_id = "fd81hgrcv6lsnkremf32"
-      size = "30"
+      size     = "30"
     }
   }
 
   network_interface {
-    subnet_id       = local.vpc_subnet_id_gitlab[terraform.workspace]
-    ip_address      = local.vpc_ip_address_gitlab[terraform.workspace]
+    subnet_id   = local.vpc_subnet_id_gitlab[terraform.workspace]
+    ip_address  = local.vpc_ip_address_gitlab[terraform.workspace]
     }
 
   metadata = {
@@ -52,10 +52,10 @@ resource "yandex_compute_instance" "gitlab" {
 }
 
 resource "yandex_compute_instance" "runner" {
-  name        = "runner"
-  zone        = local.instance_zone_gitlab[terraform.workspace]
-  description = "VM for gitlab repository"
-  hostname    = "runner.reserdukov.ru"
+  name                      = "runner"
+  zone                      = local.instance_zone_gitlab[terraform.workspace]
+  description               = "VM for gitlab repository"
+  hostname                  = "runner.reserdukov.ru"
   allow_stopping_for_update = true
   
   resources {
@@ -66,13 +66,13 @@ resource "yandex_compute_instance" "runner" {
   boot_disk {
     initialize_params {
       image_id = "fd81hgrcv6lsnkremf32"
-      size = "20"
+      size     = "20"
     }
   }
 
   network_interface {
-    subnet_id       = local.vpc_subnet_id_runner[terraform.workspace]
-    ip_address      = local.vpc_ip_address_runner[terraform.workspace]
+    subnet_id   = local.vpc_subnet_id_runner[terraform.workspace]
+    ip_address  = local.vpc_ip_address_runner[terraform.workspace]
   }
 
   metadata = {

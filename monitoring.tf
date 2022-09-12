@@ -8,8 +8,8 @@ locals {
     prod  = "${yandex_vpc_subnet.monitoring-subnet-b.id}"
   }
   instance_zone_monitoring = {
-    stage =  "ru-central1-a"
-    prod  =  "ru-central1-b"
+    stage =  var.stage-zone
+    prod  =  var.prod-zone
   }
 }
 
@@ -28,13 +28,13 @@ resource "yandex_compute_instance" "monitoring" {
   boot_disk {
     initialize_params {
       image_id = "fd81hgrcv6lsnkremf32"
-      size = "30"
+      size     = "30"
     }
   }
 
   network_interface {
-    subnet_id       = local.vpc_subnet_id_monitoring[terraform.workspace]
-    ip_address      = local.vpc_ip_address_monitoring[terraform.workspace]
+    subnet_id   = local.vpc_subnet_id_monitoring[terraform.workspace]
+    ip_address  = local.vpc_ip_address_monitoring[terraform.workspace]
     }
 
   metadata = {
