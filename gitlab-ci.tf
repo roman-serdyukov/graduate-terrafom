@@ -35,7 +35,8 @@ resource "yandex_compute_instance" "gitlab" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd81hgrcv6lsnkremf32"
+      image_id = "${data.yandex_compute_image.image-instance.id}"
+#      image_id = "fd81hgrcv6lsnkremf32"
       size     = "30"
     }
   }
@@ -49,6 +50,10 @@ resource "yandex_compute_instance" "gitlab" {
 #    ssh-keys = "ubuntu:${file(var.sshkey)}"
     ssh-keys = var.sshkey
     }
+}
+
+data "yandex_compute_image" "image-runner" {
+  family = var.family-image
 }
 
 resource "yandex_compute_instance" "runner" {
@@ -65,7 +70,8 @@ resource "yandex_compute_instance" "runner" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd81hgrcv6lsnkremf32"
+      image_id = "${data.yandex_compute_image.image-instance.id}"
+#      image_id = "fd81hgrcv6lsnkremf32"
       size     = "20"
     }
   }

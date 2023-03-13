@@ -27,7 +27,8 @@ resource "yandex_compute_instance" "reverse" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd82fnsvr0bgt1fid7cl" # ubuntu 18.04 nat instance
+      image_id = "${data.yandex_compute_image.image-instance-nat.id}"
+#      image_id = "fd82fnsvr0bgt1fid7cl" # ubuntu 18.04 nat instance
       size     = "20"
     }
   }

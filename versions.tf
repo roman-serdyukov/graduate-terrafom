@@ -7,7 +7,8 @@ terraform {
   required_version = ">= 0.13"
 
 cloud {
-    organization = "roman-serdyukov"
+#    organization = "roman-serdyukov"
+    organization = "your_company"
     hostname     = "app.terraform.io" # Optional; defaults to app.terraform.io
 
     workspaces {
@@ -24,7 +25,7 @@ locals {
 }
 
 provider "yandex" {
-  cloud_id  = "b1gs4sjqbi3m84ii35ou"
-  folder_id = "b1gu1oe1m0qlnkj61u6a"
+#  cloud_id                 = var.cloud_id
+#  folder_id                = var.folder_id
   zone      = local.instance_zone_versions[terraform.workspace]
 }

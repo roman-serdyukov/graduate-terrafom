@@ -35,7 +35,8 @@ resource "yandex_compute_instance" "db1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd81hgrcv6lsnkremf32"
+      image_id = "${data.yandex_compute_image.image-instance.id}"
+#      image_id = "fd81hgrcv6lsnkremf32"
       size = "30"
     }
   }
@@ -65,7 +66,8 @@ resource "yandex_compute_instance" "db2" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd81hgrcv6lsnkremf32"
+      image_id = "${data.yandex_compute_image.image-instance.id}"
+#      image_id = "fd81hgrcv6lsnkremf32"
       size     = "30"
     }
   }

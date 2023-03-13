@@ -47,6 +47,14 @@ resource "yandex_dns_recordset" "gitlab" {
   data             = [yandex_vpc_address.static.external_ipv4_address[0].address]
 }
 
+resource "yandex_dns_recordset" "runner" {
+  zone_id          = yandex_dns_zone.cloud_dns.id
+  name             = "runner.${var.dns-zone}"
+  type             = "A"
+  ttl              = 200
+  data             = [yandex_vpc_address.static.external_ipv4_address[0].address]
+}
+
 resource "yandex_dns_recordset" "grafana" {
   zone_id          = yandex_dns_zone.cloud_dns.id
   name             = "grafana.${var.dns-zone}"
@@ -66,6 +74,22 @@ resource "yandex_dns_recordset" "prometheus" {
 resource "yandex_dns_recordset" "alertmanager" {
   zone_id          = yandex_dns_zone.cloud_dns.id
   name             = "alertmanager.${var.dns-zone}"
+  type             = "A"
+  ttl              = 200
+  data             = [yandex_vpc_address.static.external_ipv4_address[0].address]
+}
+
+resource "yandex_dns_recordset" "db1" {
+  zone_id          = yandex_dns_zone.cloud_dns.id
+  name             = "db1.${var.dns-zone}"
+  type             = "A"
+  ttl              = 200
+  data             = [yandex_vpc_address.static.external_ipv4_address[0].address]
+}
+
+resource "yandex_dns_recordset" "db2" {
+  zone_id          = yandex_dns_zone.cloud_dns.id
+  name             = "db2.${var.dns-zone}"
   type             = "A"
   ttl              = 200
   data             = [yandex_vpc_address.static.external_ipv4_address[0].address]

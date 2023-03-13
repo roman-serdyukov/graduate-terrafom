@@ -28,7 +28,7 @@ resource "yandex_vpc_subnet" "gitlab-subnet-b" {
 resource "yandex_vpc_subnet" "reverse-subnet-b" {
     name           = "reverse-subnet-b"
     v4_cidr_blocks = ["192.168.100.0/28"]
-    zone           = "ru-central1-b"
+    zone           = var.prod-zone
     network_id     = "${yandex_vpc_network.webapps.id}"
 }
 
