@@ -3,27 +3,27 @@
 Северы создаются на базе образов Ubuntu 20.04 и Ubuntu 18.04 nat instance.
 
 ## Состав:
--	versions.tf
+-	[versions.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/versions.tf)
 Определение провайдера облачной инфраструктуры и Backend.
--	network.tf
+-	[network.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/network.tf)
 Настройки сетевой инфраструктуры для проекта
--	dns.tf
+-	[dns.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/dns.tf)
 Настройки зон DNS для проекта
--	reverse.tf
+-	[reverse.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/reverse.tf)
 Конфигурация для VM reverse proxy. Используется версия образа ubuntu 18.04 nat instance
--	mysql.tf
+-	[mysql.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/mysql.tf)
 Конфигурация для создания двух VM под базы данных.
-- www.tf
+- [www.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/www.tf)
 Конфигурация для VM application server на wordpress
--	gitlab-ci.tf
+-	[gitlab-ci.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/gitlab-ci.tf)
 Конфигурация для создания 2 VM под gitlab и runner
--	monitoring.tf
+-	[monitoring.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/monitoring.tf)
 Конфигурация для VM monitoring с использованием prometheus/grafana/alertmanager
--	outputs.tf 
+-	[outputs.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/outputs.tf) 
 Конфигурация для вывода важных значений.
-- vars.tf
+- [vars.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/vars.tf)
 Конфигурация для переменных.
-- data.tf
+- [data.tf](https://github.com/roman-serdyukov/graduate-terrafom/blob/main/data.tf)
 Конфигурация для данных family-image.
 
 ## Особенности настроек
@@ -46,8 +46,10 @@ ubuntu:ssh-rsa YouRPublicKeY+BLablABla\+=BLablABla\+=BLablABla\+= youremail@exam
 - В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную среды окружения YC_TOKEN - token для Вашего YC.
 - В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную среды окружения YC_CLOUD_ID - cloud_id для Вашего YC.
 - В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную среды окружения YC_FOLDER_ID - folder_id для Вашего YC
+- В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную dns-zone со значением имени Вашей зоны DNS.
+- В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную dns-name со значением названия публичного DNS.
+- В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную dns-name-privat со значением названия приватного DNS.
 - В терминале, перед запуском terraform init, добавить TF_TOKEN_app_terraform_io (token для Terraform cloud) в переменные среды окружения.
-- В файле vars.tf указать доменное имя переменной variable "dns-zone" вместо "your-domain".
 
 ## Переменные
 В файле vars.tf указаны значения следующих переменных:

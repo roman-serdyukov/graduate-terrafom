@@ -25,7 +25,7 @@ resource "yandex_compute_instance" "gitlab" {
   name                      = "gitlab"
   zone                      = local.instance_zone_gitlab[terraform.workspace]
   description               = "VM for gitlab repository"
-  hostname                  = "gitlab.reserdukov.ru"
+  hostname                  = "gitlab.${var.dns-zone}"
   allow_stopping_for_update = true
   
   resources {
@@ -60,7 +60,7 @@ resource "yandex_compute_instance" "runner" {
   name                      = "runner"
   zone                      = local.instance_zone_gitlab[terraform.workspace]
   description               = "VM for gitlab repository"
-  hostname                  = "runner.reserdukov.ru"
+  hostname                  = "runner.${var.dns-zone}"
   allow_stopping_for_update = true
   
   resources {

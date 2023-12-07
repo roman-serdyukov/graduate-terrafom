@@ -25,7 +25,7 @@ resource "yandex_compute_instance" "db1" {
   name                      = "db1"
   zone                      = local.instance_zone_mysql[terraform.workspace]
   description               = "VM for db repository"
-  hostname                  = "db1.reserdukov.ru"
+  hostname                  = "db1.${var.dns-zone}"
   allow_stopping_for_update = true
   
   resources {
@@ -56,7 +56,7 @@ resource "yandex_compute_instance" "db2" {
   name                      = "db2"
   zone                      = local.instance_zone_mysql[terraform.workspace]
   description               = "VM for db repository"
-  hostname                  = "db2.reserdukov.ru"
+  hostname                  = "db2.${var.dns-zone}"
   allow_stopping_for_update = true
   
   resources {

@@ -17,7 +17,7 @@ resource "yandex_compute_instance" "monitoring" {
   name        = "monitoring"
   zone        = local.instance_zone_monitoring[terraform.workspace]
   description = "VM for monitoring"
-  hostname    = "monitoring.reserdukov.ru"
+  hostname    = "monitoring.${var.dns-zone}"
   allow_stopping_for_update = true
   
   resources {

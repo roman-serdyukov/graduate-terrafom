@@ -30,19 +30,19 @@ variable "family-image-nat" {
 
 variable "dns-zone" {
   type        = string
-  default     = "your-domain."
+#  default     = "your-domain."
   description = "Domain zone"
 }
 
 variable "dns-name" {
   type        = string
-  default     = "dns-public"
+#  default     = "dns-public"
   description = "Name for public resource yandex_dns_zone"
 }
 
 variable "dns-name-private" {
   type        = string
-  default     = "dns-private"
+#  default     = "dns-private"
   description = "Name for private resource yandex_dns_zone"
 }
 

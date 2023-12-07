@@ -17,7 +17,7 @@ resource "yandex_compute_instance" "reverse" {
   name                      = "reverce"
   zone                      = local.instance_zone_reverse[terraform.workspace]
   description               = "VM for reverce proxy"
-  hostname                  = "reverse.reserdukov.ru"
+  hostname                  = "reverse.${var.dns-zone}"
   allow_stopping_for_update = true
     
   resources {

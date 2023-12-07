@@ -18,7 +18,7 @@ resource "yandex_compute_instance" "www" {
   name                      = "www"
   zone                      = local.instance_zone_www[terraform.workspace]
   description               = "VM for gitlab repository"
-  hostname                  = "www.reserdukov.ru"
+  hostname                  = "www.${var.dns-zone}"
   allow_stopping_for_update = true
   
   resources {
