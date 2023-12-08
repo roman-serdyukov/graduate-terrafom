@@ -1,5 +1,5 @@
-resource "yandex_dns_zone" "private_dns" {
-  name             = var.dns-name-private
+resource "yandex_dns_zone" "private" {
+  name             = "${var.dns-name-private}"
   description      = "My private zone for graduation project"
 
   labels = {
@@ -11,8 +11,8 @@ resource "yandex_dns_zone" "private_dns" {
   private_networks = [yandex_vpc_network.webapps.id]
 }
 
-resource "yandex_dns_zone" "cloud_dns" {
-  name             = var.dns-name
+resource "yandex_dns_zone" "cloud" {
+  name             = "${var.dns-name}"
   description      = "My public zone for graduation project"
 
   labels = {
@@ -24,7 +24,7 @@ resource "yandex_dns_zone" "cloud_dns" {
 }
 
 resource "yandex_dns_recordset" "root" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -32,7 +32,7 @@ resource "yandex_dns_recordset" "root" {
 }
 
 resource "yandex_dns_recordset" "www" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "www.${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -40,7 +40,7 @@ resource "yandex_dns_recordset" "www" {
 }
 
 resource "yandex_dns_recordset" "gitlab" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "gitlab.${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -48,7 +48,7 @@ resource "yandex_dns_recordset" "gitlab" {
 }
 
 resource "yandex_dns_recordset" "runner" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "runner.${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -56,7 +56,7 @@ resource "yandex_dns_recordset" "runner" {
 }
 
 resource "yandex_dns_recordset" "grafana" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "grafana.${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -64,7 +64,7 @@ resource "yandex_dns_recordset" "grafana" {
 }
 
 resource "yandex_dns_recordset" "prometheus" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "prometheus.${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -72,7 +72,7 @@ resource "yandex_dns_recordset" "prometheus" {
 }
 
 resource "yandex_dns_recordset" "alertmanager" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "alertmanager.${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -80,7 +80,7 @@ resource "yandex_dns_recordset" "alertmanager" {
 }
 
 resource "yandex_dns_recordset" "db1" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "db1.${var.dns-zone}"
   type             = "A"
   ttl              = 200
@@ -88,7 +88,7 @@ resource "yandex_dns_recordset" "db1" {
 }
 
 resource "yandex_dns_recordset" "db2" {
-  zone_id          = yandex_dns_zone.cloud_dns.id
+  zone_id          = yandex_dns_zone.cloud.id
   name             = "db2.${var.dns-zone}"
   type             = "A"
   ttl              = 200

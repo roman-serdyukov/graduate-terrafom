@@ -1,18 +1,18 @@
 variable "sshkey" {
   type        = string
-#  default     = "./id_rsa.netology.pub"
+  default     = "your_key"
   description = "SSH key for VMs"
 }
 
 variable "cloud_id" {
   type        = string
-  default     = ""
+  default     = "your_cloud"
   description = "Cloud ID for YC"
 }
 
 variable "folder_id" {
   type        = string
-  default     = ""
+  default     = "your_folder"
   description = "Folder ID for YC"
 }
 
@@ -20,6 +20,12 @@ variable "family-image" {
   type        = string
   default     = "ubuntu-2004-lts"
   description = "Image for instance"
+}
+
+variable "user" {
+  type        = string
+  default     = "yc-user"
+  description = "User instance"
 }
 
 variable "family-image-nat" {
@@ -30,19 +36,19 @@ variable "family-image-nat" {
 
 variable "dns-zone" {
   type        = string
-#  default     = "your-domain."
+  default     = "your_domain."
   description = "Domain zone"
 }
 
 variable "dns-name" {
   type        = string
-#  default     = "dns-public"
+  default     = "public"
   description = "Name for public resource yandex_dns_zone"
 }
 
 variable "dns-name-private" {
   type        = string
-#  default     = "dns-private"
+  default     = "private"
   description = "Name for private resource yandex_dns_zone"
 }
 
@@ -57,7 +63,6 @@ variable "prod-zone" {
   default     = "ru-central1-b"
   description = "Zone_id for prod"
 }
-
 
 variable "static" {
   type        = string

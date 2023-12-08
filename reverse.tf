@@ -41,7 +41,6 @@ resource "yandex_compute_instance" "reverse" {
   }
 
   metadata = {
-#    ssh-keys = "ubuntu:${file(var.sshkey)}"
-    ssh-keys = var.sshkey
+    ssh-keys = "${var.user}:${file(var.sshkey)}"
     }
 }
