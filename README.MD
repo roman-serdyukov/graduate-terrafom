@@ -47,14 +47,12 @@ ubuntu:ssh-rsa YouRPublicKeY+BLablABla\+=BLablABla\+=BLablABla\+= youremail@exam
 - В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную среды окружения YC_CLOUD_ID - cloud_id для Вашего YC.
 - В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную среды окружения YC_FOLDER_ID - folder_id для Вашего YC
 - В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную dns-zone со значением имени Вашей зоны DNS.
-- В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную dns-name со значением названия публичного DNS.
-- В Terraform cloud добавить в нужный workspace (по умолчанию "prod") переменную dns-name-privat со значением названия приватного DNS.
 - В терминале, перед запуском terraform init, добавить TF_TOKEN_app_terraform_io (token для Terraform cloud) в переменные среды окружения.
 
 ## Переменные
 В файле vars.tf указаны значения следующих переменных:
-- static (не используется в текущей конфигурации)
-Статический ip адрес. По умолчанию настроено на добавление данной переменной в Terraform cloud. Можно задать значение в этом блоке, например:
+
+- static (не используется в текущей конфигурации) - Статический ip адрес. По умолчанию настроено на добавление данной переменной в Terraform cloud. Можно задать значение в этом блоке, например:
 ```
 variable "static" {
   type        = string
@@ -62,8 +60,7 @@ variable "static" {
   description = "Static IP addres in your network YC"
 }
 ```
-- sshkey
-Публичный ключ SSH. По умолчанию настроено на добавление данной переменной в Terraform cloud. Как правильно добавиьть эту переменную указано в пункте выше. Можно задать значение в этом блоке, например:
+- sshkey - Публичный ключ SSH. По умолчанию настроено на добавление данной переменной в Terraform cloud. Как правильно добавиьть эту переменную указано в пункте выше. Можно задать значение в этом блоке, например:
 ```
 variable "sshkey" {
   type        = string
@@ -71,12 +68,24 @@ variable "sshkey" {
   description = "SSH key for VMs"
 }
 ```
-- dns-zone
-Имя домена для создания зоны DNS.
+- cloud_id - Cloud id для Вашего YC.
 
-- dns-name
-Название ресурса для публичной yandex_dns_zone.
+- folder_id - Folder id для Вашего YC.
 
-- dns-name-private для приватной yandex_dns_zone.
+- family-image - Версия образа для instance.
+
+- family-image-nat - Версия образа для NAT instance.
+
+- user - Имя пользователя для подключения к instance по SSH.
+
+- dns-zone - Имя домена для создания зоны DNS.
+
+- dns-name - Название ресурса для публичной yandex_dns_zone.
+
+- dns-name-private - Название ресурса для приватной yandex_dns_zone.
+
+- prod-zone - Зона в workspace prod.
+
+- stage-zone - Зона в workspace stage.
 
 В файле versions.tf необходимо указать имя организации в Terraform cloud вместо "your_company".

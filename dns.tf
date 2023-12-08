@@ -1,5 +1,5 @@
 resource "yandex_dns_zone" "private_dns" {
-  name             = var.dns-name-private
+  name             = "${var.dns-name-private}"
   description      = "My private zone for graduation project"
 
   labels = {
@@ -12,7 +12,7 @@ resource "yandex_dns_zone" "private_dns" {
 }
 
 resource "yandex_dns_zone" "cloud_dns" {
-  name             = var.dns-name
+  name             = "${var.dns-name}"
   description      = "My public zone for graduation project"
 
   labels = {

@@ -36,13 +36,13 @@ variable "dns-zone" {
 
 variable "dns-name" {
   type        = string
-#  default     = "dns-public"
+  default     = "public"
   description = "Name for public resource yandex_dns_zone"
 }
 
 variable "dns-name-private" {
   type        = string
-#  default     = "dns-private"
+  default     = "private"
   description = "Name for private resource yandex_dns_zone"
 }
 
