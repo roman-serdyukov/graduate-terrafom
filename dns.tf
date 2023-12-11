@@ -79,6 +79,14 @@ resource "yandex_dns_recordset" "alertmanager" {
   data             = [yandex_vpc_address.static.external_ipv4_address[0].address]
 }
 
+resource "yandex_dns_recordset" "monitoring" {
+  zone_id          = yandex_dns_zone.cloud_dns.id
+  name             = "monitoring.${var.dns-zone}"
+  type             = "A"
+  ttl              = 200
+  data             = [yandex_vpc_address.static.external_ipv4_address[0].address]
+}
+
 resource "yandex_dns_recordset" "db1" {
   zone_id          = yandex_dns_zone.cloud_dns.id
   name             = "db1.${var.dns-zone}"

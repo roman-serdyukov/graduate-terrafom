@@ -52,10 +52,6 @@ resource "yandex_compute_instance" "gitlab" {
     }
 }
 
-data "yandex_compute_image" "image-runner" {
-  family = var.family-image
-}
-
 resource "yandex_compute_instance" "runner" {
   name                      = "runner"
   zone                      = local.instance_zone_gitlab[terraform.workspace]
