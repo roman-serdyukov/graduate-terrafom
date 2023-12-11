@@ -47,13 +47,8 @@ resource "yandex_compute_instance" "gitlab" {
     }
 
   metadata = {
-#    ssh-keys = "ubuntu:${file(var.sshkey)}"
-    ssh-keys = var.sshkey
+    ssh-keys = "${var.user}:${file(var.sshkey)}"
     }
-}
-
-data "yandex_compute_image" "image-runner" {
-  family = var.family-image
 }
 
 resource "yandex_compute_instance" "runner" {

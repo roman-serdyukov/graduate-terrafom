@@ -39,7 +39,6 @@ resource "yandex_compute_instance" "monitoring" {
     }
 
   metadata = {
-#    ssh-keys = "ubuntu:${file(var.sshkey)}"
-    ssh-keys = var.sshkey
+    ssh-keys = "${var.user}:${file(var.sshkey)}"
    }
 }
