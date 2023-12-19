@@ -18,7 +18,7 @@ variable "folder_id" {
 
 variable "family-image" {
   type        = string
-  default     = "ubuntu-2004-lts"
+  default     = "ubuntu-2204-lts"
   description = "Image for instance"
 }
 
